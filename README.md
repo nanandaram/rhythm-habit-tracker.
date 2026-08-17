@@ -16,6 +16,10 @@ Then visit `http://127.0.0.1:4173`.
 
 Rhythm stores its data in the browser's local storage. It does not send habits or reflections to a server. Users should use **Data & backup** to export a backup before clearing browser data or moving to a different browser/device.
 
+## Press and launch page
+
+The public launch page is available at `/press/` after deployment. It links directly to the product and includes the press release, launch announcement, product preview, and media contact section.
+
 ## Deploy on Render
 
 1. Push this project to a GitHub repository.
