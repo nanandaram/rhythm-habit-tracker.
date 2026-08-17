@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121a18" />
+    <title>Rhythm — habits with momentum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a href="#today" class="brand" aria-label="Rhythm home"><span class="brand-symbol">r</span><span>rhythm</span></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link nav-button active" data-view="today"><span>◉</span> Today</button>
+          <button class="nav-link nav-button" data-view="history"><span>◷</span> History</button>
+          <button class="nav-link nav-button" data-view="insights"><span>⌁</span> Insights</button>
+          <button class="nav-link nav-button" id="openManager"><span>✦</span> My habits</button>
+          <button class="nav-link nav-button" id="openDataControls"><span>⇅</span> Data &amp; backup</button>
+        </nav>
+        <section class="side-streak" aria-label="Current streak"><div class="flame">♨</div><div><span>Current streak</span><strong id="sideStreak">0 days</strong></div></section>
+        <div class="side-bottom"><div class="tip"><span>✦</span><p>Small steps, repeated, become your rhythm.</p></div><div class="profile"><div class="avatar">N</div><div><strong>Namitha</strong><span>Building momentum</span></div><button aria-label="More options">···</button></div></div>
+      </aside>
+      <main class="main-content" id="today">
+        <header class="topbar"><button id="menuButton" class="menu-button" aria-label="Open navigation">☰</button><p id="dateLabel" class="date-label"></p><button id="helpButton" class="help-button" aria-label="How Rhythm works">?</button></header>
+        <div id="todayView">
+        <section class="hero"><div><p class="kicker">YOUR DAILY RHYTHM</p><h1>One small win<br />at a <em>time.</em></h1><p class="hero-copy" id="heroCopy">Your routines are waiting. Let’s make today matter.</p></div><div class="level-card" aria-label="Level progress"><div class="level-top"><span>LEVEL</span><b id="levelValue">1</b></div><div class="level-name" id="levelName">Fresh start</div><div class="level-track"><i id="levelFill"></i></div><div class="level-footer"><span><b id="pointsValue">0</b> points</span><span id="nextLevelLabel">100 to level 2</span></div></div></section>
+        <section class="week-card" aria-label="Weekly consistency"><div class="week-copy"><p class="kicker">THIS WEEK</p><h2>Show up for <em>yourself.</em></h2><p id="weekCopy">A new week is a new chance to find your rhythm.</p></div><div class="week-days" id="weekDays"></div><div class="weekly-score"><span>WEEKLY SCORE</span><strong id="weeklyScore">0%</strong></div></section>
+        <section class="today-header"><div><p class="kicker">TODAY’S ROUTINES</p><h2>What will you make time for?</h2></div><div class="header-actions"><button class="add-habit" id="openHabitForm"><span>+</span> Add habit</button><div class="daily-meter"><span id="todayProgress">0 / 0 complete</span><i><b id="dailyFill"></b></i></div></div></section>
+        <section class="routine-list" id="routineList"></section>
+        <div class="done-message" id="doneMessage" hidden><span>✦</span><div><strong>All done for today.</strong><p>You showed up for yourself — that’s worth celebrating.</p></div></div>
+        <section class="reflection-card"><div><p class="kicker">TODAY’S REFLECTION</p><h2 id="reflectionTitle">Leave yourself a note.</h2><p id="reflectionPreview">A single honest line is enough.</p></div><button id="openReflection" class="reflection-action">Write a reflection</button></section>
+        </div>
+        <section id="insightsView" class="insights-view" hidden>
+          <div class="insights-hero"><div><p class="kicker">YOUR PROGRESS</p><h1>Made of <em>small<br />returns.</em></h1><p>Clear patterns from the promises you keep.</p></div><div class="insight-badge"><span>THIS WEEK</span><strong id="insightScore">0%</strong><small>consistency</small></div></div>
+          <div class="stat-grid"><article><span>COMPLETIONS</span><strong id="insightCompletions">0</strong><p>actions checked off</p></article><article><span>STRONGEST DAY</span><strong id="insightBestDay">—</strong><p id="insightBestDayCopy">keep showing up</p></article><article><span>WEEKLY GOALS</span><strong id="insightGoals">0 / 0</strong><p>flexible targets reached</p></article></div>
+          <section class="insight-section"><div class="section-heading"><div><p class="kicker">WEEK AT A GLANCE</p><h2>Your daily rhythm</h2></div><p id="weekChartNote">Daily habits completed</p></div><div class="weekly-chart" id="weeklyChart"></div></section>
+          <section class="insight-section"><div class="section-heading"><div><p class="kicker">HABIT MOMENTUM</p><h2>Keep these moving</h2></div><p>Daily streaks or successful weeks</p></div><div class="habit-insights" id="habitInsights"></div></section>
+          <div class="insight-note" id="insightNote"><span>✦</span><p></p></div>
+        </section>
+        <section id="historyView" class="history-view" hidden>
+          <div class="history-hero"><div><p class="kicker">HISTORY</p><h1>Keep your record<br /><em>honest.</em></h1><p>Missed a check-in? Add it to the day it happened.</p></div><div class="history-mark">◷</div></div>
+          <div class="date-navigator" aria-label="Choose a date"><button class="date-move" data-history-nav="-1" aria-label="Previous day">←</button><div><span>ACHIEVEMENTS FOR</span><strong id="historyDateLabel"></strong></div><button class="date-move" data-history-nav="1" aria-label="Next day">→</button></div>
+          <div class="history-summary"><span class="history-dot"></span><p id="historySummary">Review the habits you completed on this day.</p></div>
+          <section class="history-section"><div class="section-heading"><div><p class="kicker">DAILY RECORD</p><h2>What did you make time for?</h2></div><p>Changes are saved automatically</p></div><div id="historyList" class="history-list"></div></section>
+        </section>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <dialog class="modal" id="habitModal">
+      <form id="habitForm">
+        <div class="modal-header"><div><p class="kicker" id="formKicker">NEW HABIT</p><h2 id="formTitle">Build a new rhythm.</h2></div><button class="modal-close" type="button" data-close="habitModal" aria-label="Close">×</button></div>
+        <input type="hidden" id="editHabitId" />
+        <label class="field">Habit name<input id="habitName" required maxlength="60" placeholder="e.g. Go for a walk" autocomplete="off" /></label>
+        <div class="field-row"><label class="field">Routine<select id="habitRoutine"></select></label><label class="field">Points<select id="habitPoints"><option value="10">10 · easy</option><option value="15" selected>15 · steady</option><option value="20">20 · stretch</option></select></label></div>
+        <label class="field new-routine-field" id="newRoutineField" hidden>New routine name<input id="newRoutineName" maxlength="30" placeholder="e.g. Midday reset" /></label>
+        <fieldset class="field schedule-field"><legend>How often?</legend><label class="choice"><input type="radio" name="schedule" value="daily" /> Every day <span>A gentle daily practice</span></label><label class="choice active"><input type="radio" name="schedule" value="weekly" checked /> Flexible weekly goal <span>Complete it any days you choose</span></label><div class="goal-control" id="goalControl"><span>My goal is</span><select id="weeklyTarget"><option value="1">1 time</option><option value="2">2 times</option><option value="3" selected>3 times</option><option value="4">4 times</option><option value="5">5 times</option><option value="6">6 times</option><option value="7">7 times</option></select><span>per week</span></div></fieldset>
+        <div class="modal-actions"><button type="button" class="cancel" data-close="habitModal">Cancel</button><button type="submit" class="save-habit">Save habit <span>→</span></button></div>
+      </form>
+    </dialog>
+    <dialog class="modal manager-modal" id="managerModal">
+      <div class="modal-header"><div><p class="kicker">MY HABITS</p><h2>Shape your rhythm.</h2></div><button class="modal-close" type="button" data-close="managerModal" aria-label="Close">×</button></div>
+      <p class="manager-copy">Flexible goals can be completed on any days. A weekly streak is earned when the goal is met before Sunday night.</p>
+      <div id="manageRoutines" class="manage-routines"></div>
+      <div id="manageList" class="manage-list"></div>
+      <button class="manager-add" id="managerAdd"><span>+</span> Add a habit</button>
+    </dialog>
+    <dialog class="modal reflection-modal" id="reflectionModal">
+      <form id="reflectionForm">
+        <div class="modal-header"><div><p class="kicker">DAILY REFLECTION</p><h2>What felt worth remembering?</h2></div><button class="modal-close" type="button" data-close="reflectionModal" aria-label="Close">×</button></div>
+        <p class="reflection-date" id="reflectionDate"></p>
+        <label class="field">One line is enough<textarea id="reflectionText" maxlength="280" required placeholder="Today, I felt proud that…"></textarea></label>
+        <div class="modal-actions"><button type="button" class="cancel" data-close="reflectionModal">Cancel</button><button type="submit" class="save-habit">Save reflection <span>→</span></button></div>
+      </form>
+    </dialog>
+    <dialog class="modal data-modal" id="dataModal">
+      <div class="modal-header"><div><p class="kicker">DATA &amp; BACKUP</p><h2>Keep your rhythm safe.</h2></div><button class="modal-close" type="button" data-close="dataModal" aria-label="Close">×</button></div>
+      <p class="manager-copy">Your data stays on this device unless you export a backup. Save a copy before changing browsers or clearing browser data.</p>
+      <div class="data-actions"><button id="exportData"><span>↓</span><div><strong>Export backup</strong><small>Download all habits, history, and reflections</small></div></button><label class="import-action"><input id="importData" type="file" accept="application/json" hidden /><span>↑</span><div><strong>Import backup</strong><small>Restore a previously exported Rhythm file</small></div></label></div>
+      <div class="archive-area"><div class="archive-heading"><div><p class="kicker">ARCHIVED</p><h3>Restore something?</h3></div><span id="archiveCount">0 items</span></div><div id="archivedList" class="archived-list"></div></div>
+      <div class="danger-zone"><div><strong>Start over</strong><p>Remove all data from this browser and restore sample habits.</p></div><button id="resetData">Reset data</button></div>
+    </dialog>
+    <script src="./app.js"></script>
+  </body>
+</html>
